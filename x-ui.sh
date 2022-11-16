@@ -483,6 +483,52 @@ ssl_cert_issue() {
     fi
 }
 
+
+check_80(){
+        if [[ -z $(type -P lsof) ]]; then
+        if [[ ! $SYSTEM == "CentOS" ]]; then
+            ${PACKAGE_UPDATE[int]}
+        fi
+        ${PACKAGE_INSTALL[int]} lsof
+    fi
+    
+    echo -e "${yellow}Checking if the port 80 is in use...${plain}"
+    sleep 1
+    
+    if [[  $(lsof -i:"80" | grep -i -c "listen") -eq 0 ]]; then
+        echo -e "${green}Good! Port 80 is not in use${plain}"
+        sleep 1
+    else
+        "${red}Port 80 is currently in use, please close the service this service, which is using port 80:${plain}"
+        lsof -i:"80"
+        read -rp "If you need to close this service right now, please press Y. Otherwise, press N to abort SSL issuing [Y/N]: " yn
+        if [[ $yn =~ "Y"|"y" ]]; then
+            lsof -i:"80" | awk '{print $2}' | grep -v "PID" | xargs kill -9
+            sleep 1
+        else
+            exit 1
+        fi
+    fi
+}
+
+install_cert(){
+    while true
+    do
+        read -p "Enter your mail:" email
+        read -p "Enter your domain:" domain
+        if [[ -z "$email"  || -z "$domain"  ]]; then
+            echo -e "Please enter email and domain or press ctrl+c to exit\n"
+        else 
+        break
+        fi
+    done
+    echo "Try to generate certificate"
+    echo "Port 80 should be open"
+    check_80
+    certbot certonly --standalone --preferred-challenges http --agree-tos --email ${email} -d ${domain}
+}
+
+
 show_usage() {
     echo "x-ui management script usage method: "
     echo "------------------------------------------"
@@ -526,9 +572,10 @@ show_menu() {
 ————————————————
   ${green}15.${plain} Installation bbr (The latest kernel)
   ${green}16.${plain} Application SSL certificate (ACME application)
+  ${green}17.${plain} Application SSL certificate (LetsEncryp http port 80)
  "
     show_status
-    echo && read -p "Please enter the selection [0-16]: " num
+    echo && read -p "Please enter the selection [0-17]: " num
 
     case "${num}" in
     0)
@@ -582,8 +629,11 @@ show_menu() {
     16)
         ssl_cert_issue
         ;;
+    17)
+        install_cert
+        ;;
     *)
-        LOGE "Please enter the correct number [0-16]"
+        LOGE "Please enter the correct number [0-17]"
         ;;
     esac
 }
