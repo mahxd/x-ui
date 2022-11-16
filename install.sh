@@ -75,9 +75,9 @@ fi
 
 install_base() {
     if [[ x"${release}" == x"centos" ]]; then
-        yum install wget curl tar -y
+        yum install wget curl tar lsof certbot -y
     else
-        apt install wget curl tar -y
+        apt install wget curl tar lsof certbot -y
     fi
 }
 
@@ -170,6 +170,58 @@ install_x-ui() {
     echo -e "----------------------------------------------"
 }
 
+check_80(){
+        if [[ -z $(type -P lsof) ]]; then
+        if [[ ! $SYSTEM == "CentOS" ]]; then
+            ${PACKAGE_UPDATE[int]}
+        fi
+        ${PACKAGE_INSTALL[int]} lsof
+    fi
+    
+    echo -e "${yellow}Checking if the port 80 is in use...${plain}"
+    sleep 1
+    
+    if [[  $(lsof -i:"80" | grep -i -c "listen") -eq 0 ]]; then
+        echo -e "${green}Good! Port 80 is not in use${plain}"
+        sleep 1
+    else
+        "${red}Port 80 is currently in use, please close the service this service, which is using port 80:${plain}"
+        lsof -i:"80"
+        read -rp "If you need to close this service right now, please press Y. Otherwise, press N to abort SSL issuing [Y/N]: " yn
+        if [[ $yn =~ "Y"|"y" ]]; then
+            lsof -i:"80" | awk '{print $2}' | grep -v "PID" | xargs kill -9
+            sleep 1
+        else
+            exit 1
+        fi
+    fi
+}
+
+install_cert(){
+    while true
+    do
+        read -p "Enter your mail:" email
+        read -p "Enter your domain:" domain
+        if [[ -z "$email"  || -z "$domain"  ]]; then
+            echo -e "\nPlease enter email and domain or press ctrl+c to exit\n"
+        else 
+        break
+        fi
+    done
+    echo "Try to generate certificate"
+    echo "Port 80 should be open"
+    check_80
+    certbot certonly --standalone --preferred-challenges http --agree-tos --email ${email} -d ${domain}
+}
+
 echo -e "${green}start installation${plain}"
 install_base
 install_x-ui $1
+
+echo 
+read -p "Do you want to generate SSL certificate too y/n? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    install_cert
+fi
