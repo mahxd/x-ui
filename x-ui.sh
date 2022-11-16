@@ -94,7 +94,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://raw.githubusercontent.com/mahxd/x-ui/master/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/mahxd/x-ui-en/main/install.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -113,7 +113,7 @@ update() {
         fi
         return 0
     fi
-    bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/mahxd/x-ui-en/main/install.sh)
     if [[ $? == 0 ]]; then
         LOGI "The update is completed, the panel has been automatically restarted "
         exit 0
@@ -137,7 +137,7 @@ uninstall() {
     rm /usr/local/x-ui/ -rf
 
     echo ""
-    echo -e "If you want to delete this script successfully, then run out of the script and run ${Green} rm /usr/bin/x-ui -f ${plain} for deleting"
+    echo -e "If you want to delete this script successfully, then run out of the script and run ${Green} rm /usr/bin/x-ui -rf ${plain} for deleting"
     echo ""
 
     if [[ $# == 0 ]]; then
@@ -302,7 +302,7 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/x-ui -N --no-check-certificate https://github.com/vaxilu/x-ui/raw/master/x-ui.sh
+    wget -O /usr/bin/x-ui -N --no-check-certificate https://github.com/mahxd/x-ui-en/raw/main/x-ui.sh
     if [[ $? != 0 ]]; then
         echo ""
         LOGE "The download script failed, please check whether the machine can be connected Github"

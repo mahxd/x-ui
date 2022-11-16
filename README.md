@@ -1,6 +1,12 @@
 # x-ui
 
-Support multi -protocol multi -user XRAY panel
+Support multi-protocol multi -user XRAY panel
+
+Translated version of https://github.com/vaxilu/x-ui
+
+Thanks to https://github.com/NidukaAkalanka for tranlating web panel (other parts didn't work fine for me)
+
+For Freedom
 
 # Features
 
@@ -17,12 +23,12 @@ Support multi -protocol multi -user XRAY panel
 # Installation & upgrade
 
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/mahxd/x-ui-en/main/install.sh)
 ```
 
 ## Manual installation & upgrade
 
-1. First https://github.com/mahxd/x-ui/releases Download the latest compressed package, generally select the `AMD64` architecture
+1. First go ot https://github.com/mahxd/x-ui-en/releases Download the latest compressed package, generally select the `AMD64` architecture
 2. Then upload this compressed package to the server `/root/`In the directory and use `root`User login server
 
 > If your server cpu The architecture is not `amd64`，The command will be in your own `amd64`Replace it with other architecture
