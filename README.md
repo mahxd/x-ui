@@ -69,6 +69,11 @@ docker build -t x-ui .
 
 ## SSLCertificate application
 
+## SSLCertificate application
+you can use LetsEncypt certificate generator with http at last step of setup(recommended).
+
+or using following method (limited)
+
 > This function and tutorial[FranzKafkaYu](https://github.com/FranzKafkaYu)supply
 
 The script built -in SSL certificate application function, using this script application certificate, must meet the following conditions:
@@ -89,7 +94,7 @@ Precautions:
 - This script uses DNS API to apply for a certificate
 - Use Let'sencrypt as a CA side by default
 - Certificate installation directory is/root/cert directory
-- This script application certificate is a pan -domain name certificate
+- This script application certificate is a pan-domain name certificate
 
 ## tg robot use (in development, not available for the time being)
 
