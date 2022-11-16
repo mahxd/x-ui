@@ -1,6 +1,6 @@
 # x-ui
 
-Support multi-protocol multi -user XRAY panel
+Support multi-protocol multi-user XRAY panel
 
 Translated version of https://github.com/vaxilu/x-ui
 
@@ -11,8 +11,8 @@ For Freedom
 # Features
 
 - System status monitoring
-- Support multi -user multi -protocol, web page visualization operation
-- Support protocol：vmess、vless、trojan、shadowsocks、dokodemo-door、socks、http
+- Support multi-user multi-protocol, web page visualization operation
+- Support protocol：vmess, vless, trojan, shadowsocks, dokodemo-door, socks, http
 - Support configuration more transmission configuration
 - Traffic statistics, restricting traffic, limit expiration time
 - Can customize XRAY configuration template
