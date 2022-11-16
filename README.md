@@ -40,7 +40,7 @@ systemctl enable x-ui
 systemctl restart x-ui
 ```
 
-## 使用docker安装
+## Use docker installation
 
 > This docker tutorial and Docker mirror image[Chasing66](https://github.com/Chasing66)supply
 
@@ -61,7 +61,7 @@ docker run -itd --network=host \
     enwaiax/x-ui:latest
 ```
 
-> Build 自己的镜像
+> Build Your own image
 
 ```shell
 docker build -t x-ui .
@@ -124,7 +124,7 @@ More functional planning...
 
 # common problem
 
-## 从 v2-ui migrate
+## from v2-ui migrate
 
 First install the latest version of the x-ui on the v2-ui server, and then use the following command to migrate to migrate all the inbound account data of the migration of the v2-ui x-ui，`Panel settings and username passwords will not migrate`
 
