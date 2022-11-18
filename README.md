@@ -26,9 +26,14 @@ For Freedom
 bash <(curl -Ls https://raw.githubusercontent.com/mahxd/x-ui-en/main/install.sh)
 ```
 
+### Install server and config VMESS + WS
 
 https://user-images.githubusercontent.com/85416927/202787833-7b093872-7ee0-48e6-85ee-ce6b208d9c70.mp4
 
+
+### Add SSL to secure connection ( VMESS + WS + TLS )
+
+https://user-images.githubusercontent.com/85416927/202795886-3f40140c-508b-4ef6-9a3c-f225ca0608f3.mp4
 
 
 ## Manual installation & upgrade
