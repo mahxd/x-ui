@@ -1,4 +1,4 @@
-# x-ui ( V2ray + GUI-Panel)
+# x-ui ( V2ray + GUI-Panel )
 
 Support multi-protocol multi-user XRAY panel
 
