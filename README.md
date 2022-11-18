@@ -26,6 +26,11 @@ For Freedom
 bash <(curl -Ls https://raw.githubusercontent.com/mahxd/x-ui-en/main/install.sh)
 ```
 
+
+https://user-images.githubusercontent.com/85416927/202787833-7b093872-7ee0-48e6-85ee-ce6b208d9c70.mp4
+
+
+
 ## Manual installation & upgrade
 
 1. First go ot https://github.com/mahxd/x-ui-en/releases Download the latest compressed package, generally select the `AMD64` architecture
